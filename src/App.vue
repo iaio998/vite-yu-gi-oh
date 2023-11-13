@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { cards } from "./data/store";
+import { store } from "./data/store";
 import axios from "axios";
 
 export default {
@@ -11,16 +11,18 @@ export default {
   componets: {},
   data() {
     return {
-      cards,
+      store,
     };
   },
   methods: {
     getCards() {
-      const url = this.cards.apiUrl;
-      axios.get(url).then((response) => {
-        console.log(response.data);
-        // store.characterList = response.data.results;
-      });
+      // const url = this.store.apiUrl;
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0")
+        .then((response) => {
+          console.log(response.data);
+          // store.characterList = response.data.results;
+        });
     },
     created() {
       this.getCards();
