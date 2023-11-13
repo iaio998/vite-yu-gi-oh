@@ -1,6 +1,6 @@
 <template>
   <div class="bg-warning">
-    <div class="container bg-white">
+    <div class="container bg-white p-5">
       <div class="bg-dark text-white p-4 mb-2">
         <h5 class="fst-italic">We found {{ store.cardList.length }} cards</h5>
       </div>

@@ -1,6 +1,10 @@
 <template>
-  <HeaderComponent />
-  <MainComponent />
+  <LoaderComponent v-if="store.cardList.length < 12850" />
+  <div v-else>
+    <HeaderComponent />
+    <SearchComponent />
+    <MainComponent />
+  </div>
 </template>
 
 <script>
@@ -8,10 +12,17 @@ import { store } from "./data/store";
 import axios from "axios";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import MainComponent from "./components/MainComponent.vue";
+import SearchComponent from "./components/SearchComponent.vue";
+import LoaderComponent from "./components/sons/LoaderComponent.vue";
 
 export default {
   name: "App",
-  components: { HeaderComponent, MainComponent },
+  components: {
+    HeaderComponent,
+    MainComponent,
+    SearchComponent,
+    LoaderComponent,
+  },
   data() {
     return {
       store,
