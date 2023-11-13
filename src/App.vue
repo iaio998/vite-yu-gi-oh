@@ -1,14 +1,15 @@
 <template>
-  <div></div>
+  <HeaderComponent />
 </template>
 
 <script>
 import { store } from "./data/store";
 import axios from "axios";
+import HeaderComponent from "./components/HeaderComponent.vue";
 
 export default {
   name: "App",
-  componets: {},
+  components: { HeaderComponent },
   data() {
     return {
       store,
@@ -16,17 +17,15 @@ export default {
   },
   methods: {
     getCards() {
-      // const url = this.store.apiUrl;
-      axios
-        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0")
-        .then((response) => {
-          console.log(response.data);
-          // store.characterList = response.data.results;
-        });
+      const url = this.store.apiUrl;
+      axios.get(url).then((response) => {
+        console.log(response.data.data);
+        store.cardList = response.data.data;
+      });
     },
-    created() {
-      this.getCards();
-    },
+  },
+  created() {
+    this.getCards();
   },
 };
 </script>

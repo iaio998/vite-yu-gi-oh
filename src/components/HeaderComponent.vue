@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <div>
+    <div class="container">
+      <h1>YU-GI-OH API</h1>
+    </div>
+  </div>
 </template>
 
 <script>
