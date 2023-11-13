@@ -6,4 +6,5 @@ export const store = reactive({
     firstEnd: "?num=20&offset=0",
   },
   cardList: [],
+  flag: true,
 });

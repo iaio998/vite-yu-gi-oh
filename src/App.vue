@@ -1,5 +1,5 @@
 <template>
-  <LoaderComponent v-if="store.cardList.length < 12850" />
+  <LoaderComponent v-if="store.flag" />
   <div v-else>
     <HeaderComponent />
     <SearchComponent />
@@ -34,6 +34,7 @@ export default {
       axios.get(url).then((response) => {
         console.log(response.data.data);
         store.cardList = response.data.data;
+        store.flag = false;
       });
     },
   },
