@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="container">
-      <h1>YU-GI-OH API</h1>
+    <div class="container d-flex align-items-center py-4">
+      <img src="/images/Yugioh_anime_logo.webp" alt="YuGiOh" />
+      <h1>Yu-Gi-Oh API</h1>
     </div>
   </div>
 </template>
@@ -16,4 +17,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+  width: 300px;
+}
+</style>

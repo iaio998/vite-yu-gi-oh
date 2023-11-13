@@ -1,11 +1,9 @@
 <template>
-  <div class="col-3">
-    <div>
-      <div><img :src="image" :alt="name" /></div>
-      <div class="text-center py-2">
-        <h5>{{ name }}</h5>
-        <h6>{{ archetype }}</h6>
-      </div>
+  <div class="card my-card border-0">
+    <div><img :src="image" :alt="name" /></div>
+    <div class="text-center card-body bg-warning">
+      <h5 class="card-title text-black">{{ name }}</h5>
+      <h6 class="card-text text-success fst-italic">{{ archetype }}</h6>
     </div>
   </div>
 </template>
@@ -18,10 +16,15 @@ export default {
     name: String,
     archetype: String,
   },
-  data() {
-    return {};
-  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+  width: 100%;
+}
+
+.my-card {
+  width: calc(100% / 5 - 20px);
+}
+</style>
