@@ -30,22 +30,22 @@ export default {
     };
   },
   methods: {
-    getCards() {
-      const url = this.store.apiUrl;
-      axios.get(url, { params: this.params }).then((response) => {
-        console.log(response.data.data);
-        store.cardList = response.data.data;
-        store.flag = false;
-      });
-    },
-    getArchetypes() {
-      const url = this.store.apiUrlArchetypes;
-      axios.get(url).then((response) => {
-        console.log(response.data);
-        store.cardArchetypes = response.data;
-        console.log(store.cardArchetypes);
-      });
-    },
+    // getCards() {
+    //   const url = this.store.apiUrl;
+    //   axios.get(url, { params: this.params }).then((response) => {
+    //     console.log(response.data.data);
+    //     store.cardList = response.data.data;
+    //     store.flag = false;
+    //   });
+    // },
+    // getArchetypes() {
+    //   const url = this.store.apiUrlArchetypes;
+    //   axios.get(url).then((response) => {
+    //     console.log(response.data);
+    //     store.cardArchetypes = response.data;
+    //     console.log(store.cardArchetypes);
+    //   });
+    // },
     filterArchetypes(value) {
       console.log(value);
       if (value) {
@@ -59,8 +59,23 @@ export default {
     },
   },
   created() {
-    this.getCards();
-    this.getArchetypes();
+    function getCards() {
+      const url = store.apiUrl;
+      return axios.get(url);
+    }
+    function getArchetypes() {
+      const url = store.apiUrlArchetypes;
+      return axios.get(url);
+    }
+    Promise.all([getCards(), getArchetypes()]).then(function (results) {
+      store.cardList = results[0].data;
+      const acct2 = results[1].data;
+      console.log(store.cardList, acct2);
+      store.flag = false;
+    });
+
+    // this.getCards();
+    // this.getArchetypes();
   },
 };
 </script>
