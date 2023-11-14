@@ -2,7 +2,7 @@
   <LoaderComponent v-if="store.flag" />
   <div v-else>
     <HeaderComponent />
-    <SearchComponent />
+    <SearchComponent @filter-archetype="filterArchetypes" />
     <MainComponent />
   </div>
 </template>
@@ -26,12 +26,13 @@ export default {
   data() {
     return {
       store,
+      params: null,
     };
   },
   methods: {
     getCards() {
       const url = this.store.apiUrl;
-      axios.get(url + store.endPoint.firstEnd).then((response) => {
+      axios.get(url, { params: this.params }).then((response) => {
         console.log(response.data.data);
         store.cardList = response.data.data;
         store.flag = false;
@@ -44,6 +45,17 @@ export default {
         store.cardArchetypes = response.data;
         console.log(store.cardArchetypes);
       });
+    },
+    filterArchetypes(value) {
+      console.log(value);
+      if (value) {
+        this.params = {
+          archetype: value,
+        };
+      } else {
+        this.params = null;
+      }
+      this.getCards();
     },
   },
   created() {

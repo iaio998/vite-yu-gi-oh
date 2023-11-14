@@ -5,6 +5,7 @@
         class="form-select"
         aria-label="Default select example"
         v-model="filterValue"
+        @change="search"
       >
         <option value="">All cards</option>
         <option
@@ -28,7 +29,11 @@ export default {
       filterValue: "",
     };
   },
-  methods() {},
+  methods: {
+    search() {
+      this.$emit("filterArchetype", this.filterValue);
+    },
+  },
 };
 </script>
 
