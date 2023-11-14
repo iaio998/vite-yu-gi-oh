@@ -1,19 +1,34 @@
 <template>
   <div class="bg-warning py-4">
     <div class="container">
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        v-model="filterValue"
+      >
+        <option value="">All cards</option>
+        <option
+          v-for="(el, index) in store.cardArchetypes"
+          :value="el.archetype_name"
+        >
+          {{ el.archetype_name }}
+        </option>
       </select>
     </div>
   </div>
 </template>
 
 <script>
+import { store } from "../data/store";
 export default {
   name: "SearchComponent",
+  data() {
+    return {
+      store,
+      filterValue: "",
+    };
+  },
+  methods() {},
 };
 </script>
 

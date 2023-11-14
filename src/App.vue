@@ -31,15 +31,24 @@ export default {
   methods: {
     getCards() {
       const url = this.store.apiUrl;
-      axios.get(url).then((response) => {
+      axios.get(url + store.endPoint.firstEnd).then((response) => {
         console.log(response.data.data);
         store.cardList = response.data.data;
         store.flag = false;
       });
     },
+    getArchetypes() {
+      const url = this.store.apiUrlArchetypes;
+      axios.get(url).then((response) => {
+        console.log(response.data);
+        store.cardArchetypes = response.data;
+        console.log(store.cardArchetypes);
+      });
+    },
   },
   created() {
     this.getCards();
+    this.getArchetypes();
   },
 };
 </script>
