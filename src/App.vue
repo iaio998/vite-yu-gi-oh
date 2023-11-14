@@ -35,7 +35,7 @@ export default {
       axios.get(url, { params: this.params }).then((response) => {
         console.log(response.data.data);
         store.cardList = response.data.data;
-        store.flag = false;
+        // store.flag = false;
       });
     },
     // getArchetypes() {
