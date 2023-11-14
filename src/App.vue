@@ -30,14 +30,14 @@ export default {
     };
   },
   methods: {
-    // getCards() {
-    //   const url = this.store.apiUrl;
-    //   axios.get(url, { params: this.params }).then((response) => {
-    //     console.log(response.data.data);
-    //     store.cardList = response.data.data;
-    //     store.flag = false;
-    //   });
-    // },
+    getCards() {
+      const url = this.store.apiUrl;
+      axios.get(url, { params: this.params }).then((response) => {
+        console.log(response.data.data);
+        store.cardList = response.data.data;
+        store.flag = false;
+      });
+    },
     // getArchetypes() {
     //   const url = this.store.apiUrlArchetypes;
     //   axios.get(url).then((response) => {
@@ -68,9 +68,8 @@ export default {
       return axios.get(url);
     }
     Promise.all([getCards(), getArchetypes()]).then(function (results) {
-      store.cardList = results[0].data;
-      const acct2 = results[1].data;
-      console.log(store.cardList, acct2);
+      store.cardList = results[0].data.data;
+      store.cardArchetypes = results[1].data;
       store.flag = false;
     });
 
